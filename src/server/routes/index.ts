@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { getHealth } from './healthCheck';
+import { Router } from 'express';
+import { healthCheck } from './health-check';
 
 export const routes = Router();
 
-routes.use(getHealth);
+routes.use(healthCheck);
