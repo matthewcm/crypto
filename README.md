@@ -1,5 +1,9 @@
 # crypto
 
+[![codecov](https://codecov.io/gh/matthewcm/crypto/branch/main/graph/badge.svg?token=3XOEVUP6N1)](https://codecov.io/gh/matthewcm/crypto)
+![build and test](https://github.com/github/docs/actions/workflows/client.yml/badge.svg)
+
+
 # Introduction
 
 A react app that fetches crypto currency market updates from https://bittrex.github.io/api/v3
