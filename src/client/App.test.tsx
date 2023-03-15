@@ -5,4 +5,4 @@ test('renders app title', () => {
   render(<App />);
   const titleElement = screen.getByText(/Cryptocurrency Market Data/i);
   expect(titleElement).toBeInTheDocument();
-});
+})
