@@ -9,7 +9,7 @@ function App() {
     <div className="App container">
 
       <h2 className="text-8xl">
-        Tailwind
+        Cryptocurrency Market Data
       </h2>
     </div>
   )
