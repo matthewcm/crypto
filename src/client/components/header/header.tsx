@@ -1,4 +1,4 @@
-import SearchIcon from '../../assets/search-icon.svg';
+import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
 
 const Header = () => (
 	<header className="header">

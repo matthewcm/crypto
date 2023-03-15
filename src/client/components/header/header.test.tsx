@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Header from './header.js';
+import Header from './header';
 
 it('should render Header component', () => {
 	const { container } = render(<Header />);
