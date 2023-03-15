@@ -1,6 +1,6 @@
-import express from 'express';
-import { getHealth } from './healthCheck.js';
+import { Router } from 'express';
+import { healthCheck } from './health-check.js';
 
-export const routes = express.Router();
+export const routes = Router();
 
-routes.use(getHealth);
+routes.use(healthCheck);
