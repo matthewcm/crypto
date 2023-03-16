@@ -1,13 +1,19 @@
+import { useEffect } from 'react';
+import { themeChange } from 'theme-change';
+import Layout from './components/layout/layout';
 import './app.css';
-import Footer from './components/footer/footer';
-import Header from './components/header/header';
 
 function App() {
+	useEffect(() => {
+		themeChange(false);
+	}, []);
+
 	return (
-		<div className="App container">
-			<Header />
-			<Footer />
-		</div>
+		<Layout>
+			<div className="App container min-h-screen" role="main">
+				Hello
+			</div>
+		</Layout>
 	);
 }
 

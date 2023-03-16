@@ -9,6 +9,6 @@ it('should render Header component', () => {
 
 test('renders Header title', () => {
 	render(<Header />);
-	const titleElement = screen.getByText(/cryptocurrency market data/i);
+	const titleElement = screen.getByText(/Crypto/i);
 	expect(titleElement).toBeInTheDocument();
 });

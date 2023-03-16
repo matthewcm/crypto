@@ -9,6 +9,6 @@ it('should render Footer component', () => {
 
 test('renders Footer title', () => {
 	render(<Footer />);
-	const titleElement = screen.getByText(/footer/i);
+	const titleElement = screen.getByText(/copyright/i);
 	expect(titleElement).toBeInTheDocument();
 });
