@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './app';
 
-test('renders app title', () => {
+test('renders app header title', () => {
 	render(<App />);
-	const titleElement = screen.getByText(/cryptocurrency market data/i);
-	expect(titleElement).toBeInTheDocument();
+	const headerElement = screen.getByRole('heading');
+	expect(headerElement).toBeInTheDocument();
+	expect(headerElement).toHaveTextContent(/cryptocurrency market data/i);
+});
+test('renders app footer title', () => {
+	render(<App />);
+	const footerElement = screen.getByText('footer');
+	expect(footerElement).toBeInTheDocument();
 });
