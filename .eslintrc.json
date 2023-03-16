@@ -70,7 +70,6 @@
         ],
         "react-hooks/exhaustive-deps": "off",
         // Enforce the use of the shorthand syntax.
-        "object-shorthand": "error",
-        "no-console": "warn"
+        "object-shorthand": "error"
     }
 }

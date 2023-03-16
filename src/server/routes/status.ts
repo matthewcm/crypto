@@ -37,7 +37,6 @@ const checkBittrexApiStatus = async (): Promise<StatusResponse> => {
 		}
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
-			/* eslint-disable-next-line no-console */
 			console.error('Error checking Bittrex API:', error.message);
 		}
 	}
