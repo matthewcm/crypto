@@ -2,23 +2,12 @@ import SwitchTheme from '../theme/switch-theme';
 
 const Header = () => {
 	return (
-		<div className="navbar bg-base-100">
+		<header className="navbar bg-base-100">
 			<div className="navbar-start"></div>
 			<div className="navbar-center">
 				<a className="btn btn-ghost normal-case text-xl">Crypto</a>
 			</div>
 			<div className="navbar-end">
-				<div className="form-control">
-					<label className="label cursor-pointer">
-						<span className="label-text mr-2">Turn on the lights</span>
-						<input
-							type="checkbox"
-							data-toggle-theme="dracula,light"
-							data-act-class="ACTIVECLASS"
-							className="toggle"
-						/>
-					</label>
-				</div>
 				<SwitchTheme />
 				<button className="btn btn-ghost btn-circle">
 					<svg
@@ -37,7 +26,7 @@ const Header = () => {
 					</svg>
 				</button>
 			</div>
-		</div>
+		</header>
 	);
 };
 
