@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import SwitchTheme from '../theme/switch-theme';
 
 const Header = () => {
-	const [themeChecked, setThemeChecked] = useState(false);
-
 	return (
 		<div className="navbar bg-base-100">
 			<div className="navbar-start"></div>
