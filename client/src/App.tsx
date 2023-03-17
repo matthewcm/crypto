@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { themeChange } from 'theme-change';
 import Layout from './components/Layout/Layout';
-import './app.css';
+import './App.css';
 
 function App() {
 	useEffect(() => {
