@@ -10,7 +10,8 @@
     "build-all": "npm run build --workspaces --if-present",
     "lint-all": "npm run lint --workspaces --if-present",
     "test-all": "npm run test --workspaces --if-present",
-    "test-all-cov": "npm run test --workspaces --if-present -- --coverage"
+    "test-all-cov": "npm run test --workspaces --if-present -- --coverage",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
