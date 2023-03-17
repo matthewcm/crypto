@@ -27,7 +27,7 @@ jobs:
     - run: npm run lint-all --workspaces --if-present
     - run: npm run build-all --workspaces --if-present
     - name: Run the tests and generate coverage report
-      run: npm test-all
+      run: npm run test-all
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
