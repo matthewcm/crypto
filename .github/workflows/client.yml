@@ -12,6 +12,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'client'
 
     strategy:
       matrix:
@@ -20,11 +23,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: cd client
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+        cache-dependency-path: 'client/package-lock.json' # THIS PATTERN did the trick for me.
         cache: 'npm'
     - run: npm ci
     - run: npm run lint
