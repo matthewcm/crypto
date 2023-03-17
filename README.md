@@ -4,9 +4,36 @@
 [![Node.js CI](https://github.com/matthewcm/crypto/actions/workflows/client.yml/badge.svg)](https://github.com/matthewcm/crypto/actions/workflows/client.yml)
 
 
+
 # Introduction
 
 A react app that fetches crypto currency market updates from https://bittrex.github.io/api/v3
+
+# Prerequisites
+
+## Install Docker
+Check the official Docker documentation for information how to install Docker on your operating system. And then install Docker and supporting tools.
+
+# How to use
+
+with Docker installed on your machine, run the following `make` commands
+
+## To build and run the application
+
+```bash
+make build
+```
+
+## To stop and remove application docker containers
+
+```bash
+make down
+```
+
+
+---
+
+# System Design Documentation
 
 # Requirements
 

@@ -9,4 +9,6 @@ RUN npm i
 
 COPY . .
 
-RUN npm run dev -- --host
+EXPOSE 8000
+
+CMD ["npm", "run", "dev", "--host"]

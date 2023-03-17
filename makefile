@@ -1,14 +1,12 @@
 .PHONY: kill build down up
 
-include .env
-export 
-DOCKER_PROJECT = ${PROJECT_NAME}
+export DOCKER_PROJECT = ${PROJECT_NAME}
 
 kill:
 	docker compose kill
 
 build:
-	docker compose up -d --build
+	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose up -d --build
 
 up:
 	docker compose up -d 
