@@ -7,7 +7,7 @@
 		"start:server": "nodemon --esm --experimental-specifier-resolution=node src/server.ts",
 		"preview": "vite preview",
 		"test": "jest",
-		"lint": "tsc --noEmit && eslint src/**/*.ts{,x} --max-warnings=0",
+		"lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
 		"lint:fix": "eslint src/**/*.ts{,x} --fix"
 	},
 	"dependencies": {
