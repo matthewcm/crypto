@@ -1,5 +1,4 @@
 FROM node:19-alpine
-
 WORKDIR /api
 
 COPY package.json .
