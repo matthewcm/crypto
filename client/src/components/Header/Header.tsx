@@ -1,4 +1,4 @@
-import SwitchTheme from '../theme/switch-theme';
+import SwitchTheme from '../Theme/SwitchTheme';
 
 const Header = () => {
 	return (

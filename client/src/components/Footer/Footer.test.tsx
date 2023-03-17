@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import Footer from './footer';
+import Footer from './Footer';
 
 it('should render Footer component', () => {
 	const { container } = render(<Footer />);
