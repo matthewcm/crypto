@@ -6,6 +6,12 @@
     "client",
     "server"
   ],
+  "scripts": {
+    "build-all": "npm run build --workspaces --if-present",
+    "lint-all": "npm run lint --workspaces --if-present",
+    "test-all": "npm run test --workspaces --if-present",
+    "test-all-cov": "npm run test --workspaces --if-present -- --coverage"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matthewcm/crypto.git"
