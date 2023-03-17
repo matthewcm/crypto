@@ -1,3 +1,12 @@
-FROM nginx:stable-alpine
+FROM node:19-alpine
 
-COPY dist/ /usr/share/nginx/html
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm i
+
+COPY . .
+
+RUN npm run dev -- --host
