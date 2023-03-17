@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "composite": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+  },
+  "include": ["src/**/*"],
+}

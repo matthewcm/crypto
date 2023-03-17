@@ -21,7 +21,7 @@ describe('Status Check API', () => {
 	});
 
 	it('should respond with "Bittrex API is down" when Bittrex API is down', async () => {
-		jest.spyOn(console, 'error');
+		jest.spyOn(console, 'error').mockImplementation();
 		mockedAxios.isAxiosError.mockReturnValueOnce(true);
 
 		mockedAxios.get.mockRejectedValue(new Error('Bittrex API is down'));
