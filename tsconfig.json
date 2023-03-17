@@ -16,7 +16,7 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
   },
-  "include": ["src", "client", "server"],
+  "include": ["src", "client", "server", "jest.setup.ts"],
   "ts-node": {
     "esm": true
   },
