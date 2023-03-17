@@ -2,6 +2,7 @@
 
 [![codecov](https://codecov.io/gh/matthewcm/crypto/branch/main/graph/badge.svg?token=3XOEVUP6N1)](https://codecov.io/gh/matthewcm/crypto)
 [![Node.js CI](https://github.com/matthewcm/crypto/actions/workflows/client.yml/badge.svg)](https://github.com/matthewcm/crypto/actions/workflows/client.yml)
+[![.github/workflows/server.yml](https://github.com/matthewcm/crypto/actions/workflows/server.yml/badge.svg?branch=main)](https://github.com/matthewcm/crypto/actions/workflows/server.yml)
 
 
 # Introduction
