@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { useAuth0 } from '@auth0/auth0-react';
 import Profile from './Profile';
 
-describe('Auth component', () => {
+describe('Profile component', () => {
 
   const user = {
     name: 'Cake',
