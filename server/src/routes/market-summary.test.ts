@@ -62,8 +62,49 @@ describe('Market Summary API', () => {
     });
   });
   describe('GET /summary/:symbol', () => {
-    it('should respond with market summary array', async () => {
+    it('should respond with market summary for specific currency', async () => {
+      (jwtCheck as jest.Mock).mockImplementation(
+        (_req: Request, _res: Response, next: NextFunction) => {
+          next();
+        },
+      );
 
+      const mockedMarketSummary: MarketSummary = {
+        symbol: '1ECO-BTC',
+        high: '0.000017440000',
+        low: '0.000015640000',
+        volume: '431.51000000',
+        quoteVolume: '0.00710040',
+        percentChange: '-3.30',
+        updatedAt: '2023-03-18T15:02:56.843Z',
+        
+      };
+      mockedAxios.get.mockResolvedValue({ status: 200, data: {
+        ...mockedMarketSummary,
+      } });
+      const res = await request(app).get('/summary/IECO-BTC');
+
+      const marketSummaryResponse = res.body as MarketSummary;
+      expect(res.statusCode).toEqual(200);
+      expect(marketSummaryResponse).toEqual(
+        mockedMarketSummary,
+      );
     });
+
+    it('should respond with "Bittrex API is down" when Bittrex API is down', async () => {
+      mockedAxios.isAxiosError.mockReturnValueOnce(true);
+
+      const httpException = {
+        message: 'Bittrex API is down', 
+        status: 500,
+      } as HttpException;
+      mockedAxios.get.mockRejectedValue(
+        httpException,
+      );
+      const res = await request(app).get('/summary/IECO-BTC');
+      expect(res.statusCode).toEqual(500);
+      expect(res.body).toEqual(httpException);
+    });
+
   });
 });
