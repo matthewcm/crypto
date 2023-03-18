@@ -4,9 +4,10 @@ import {
 	type Request,
 	type Response,
 	type RequestHandler,
+	NextFunction,
 } from 'express';
 
-export const status = Router();
+export const statusRoute = Router();
 
 type StatusResponse = {
 	status: string;
@@ -44,7 +45,7 @@ const checkBittrexApiStatus = async (): Promise<StatusResponse> => {
 };
 
 // Health check endpoint: /status
-status.get('/status', (async (req: Request, res: Response) => {
+statusRoute.get('/status', (async (req: Request, res: Response) => {
 	const bittrexApiStatus = await checkBittrexApiStatus();
 
 	const statusResponse = {
