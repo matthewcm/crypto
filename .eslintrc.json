@@ -11,7 +11,6 @@
         "plugin:react/jsx-runtime",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended",
         "plugin:import/recommended"
     ],
     // Specifying Parser
@@ -43,22 +42,24 @@
     },
     "rules": {
         "linebreak-style": "off",
-        // Configure prettier
-        "prettier/prettier": [
-            "error",
-            {
-                "semi": true,
-                "printWidth": 80,
-                "endOfLine": "lf",
-                "singleQuote": true,
-                "tabWidth": 2,
-                "indentStyle": "space",
-                "useTabs": true,
-                "trailingComma": "es5"
-            }
-        ],
         // Disallow the `any` type.
         "@typescript-eslint/no-explicit-any": "warn",
+        "@typescript-eslint/no-unused-vars": [
+            1,
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
+        "semi": "error",
+        "eol-last": "warn",
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "comma-dangle": [
+            "error",
+            "always-multiline"
+        ],
         "@typescript-eslint/ban-types": [
             "error",
             {
@@ -68,7 +69,11 @@
                 }
             }
         ],
-        "react-hooks/exhaustive-deps": "off",
+        "indent": [
+            "error",
+            2
+        ],
+        "react-hooks/exhaustive-deps": "warn",
         // Enforce the use of the shorthand syntax.
         "object-shorthand": "error"
     }

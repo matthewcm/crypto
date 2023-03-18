@@ -5,7 +5,7 @@ export default {
 	},
 	moduleNameMapper: {
 		'\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-      "\\.svg": "<rootDir>/src/__mocks__/svg.tsx"
+		'\\.svg': '<rootDir>/src/__mocks__/svg.tsx',
 	},
-	setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+	setupFilesAfterEnv: ['<rootDir>/jest.setup.tsx'],
 };
