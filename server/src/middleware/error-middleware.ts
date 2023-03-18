@@ -14,7 +14,7 @@ const errorMiddleware = (
 
   const { 
     status = 500,
-    message = 'Internal Server Error',
+    message = 'Something went wrong',
   } = errorObject;
 
   response.status(status).send({

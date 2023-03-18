@@ -41,7 +41,7 @@ describe('Error Middleware', () => {
     expect(wasCalled).toEqual(true);
     expect(mockResponse._getData()).toEqual({
       status: 500,
-      message: 'Internal Server Error',
+      message: 'Something went wrong',
     });
   } ) ;
 });
