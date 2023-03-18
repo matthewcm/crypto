@@ -7,9 +7,9 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "composite": true,
-    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
+    "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

@@ -6,7 +6,7 @@ kill:
 	docker compose kill
 
 build:
-	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose up -d --build
+	docker compose build --no-cache
 
 up:
 	docker compose up -d 

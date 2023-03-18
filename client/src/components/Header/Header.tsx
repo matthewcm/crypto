@@ -1,9 +1,12 @@
 import SwitchTheme from '../Theme/SwitchTheme';
+import Auth from '../Auth/Auth';
 
 const Header = () => {
 	return (
 		<header className="navbar bg-base-100">
-			<div className="navbar-start"></div>
+			<div className="navbar-start">
+				<Auth />
+			</div>
 			<div className="navbar-center">
 				<a className="btn btn-ghost normal-case text-xl">Crypto</a>
 			</div>
