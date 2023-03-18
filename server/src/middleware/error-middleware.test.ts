@@ -1,10 +1,8 @@
-import request from 'supertest';
-import errorMiddlware from './error-middleware';
 import errorMiddleware from './error-middleware';
 import HttpException from '../exceptions/HttpException';
-import { NextFunction, Request, Response, response } from 'express';
+import { NextFunction, Response } from 'express';
 import {
-  createRequest, createResponse, MockRequest, MockResponse,
+  createRequest, createResponse
 } from 'node-mocks-http';
 
 describe('Error Middleware', () => {
@@ -17,7 +15,7 @@ describe('Error Middleware', () => {
         
     });
 
-    const mockResponse: MockResponse<Response> = createResponse();
+    const mockResponse = createResponse();
     const mockNext = jest.fn();
 
     errorMiddleware(mockError, mockRequest, mockResponse, mockNext as NextFunction);
@@ -35,7 +33,7 @@ describe('Error Middleware', () => {
         
     });
 
-    const mockResponse: MockResponse<Response> = createResponse();
+    const mockResponse = createResponse();
     const mockNext = jest.fn();
 
     errorMiddleware(mockError, mockRequest, mockResponse, mockNext as NextFunction);

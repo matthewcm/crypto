@@ -3,7 +3,7 @@ import HttpException from '../exceptions/HttpException';
 
 const errorMiddleware = (
   error: HttpException,
-  _request: Request,
+  request: Request,
   response: Response,
   _next: NextFunction,
 ) => {
@@ -21,6 +21,7 @@ const errorMiddleware = (
     status,
     message,
   });
+
 };
 
 export default errorMiddleware;

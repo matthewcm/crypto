@@ -16,9 +16,6 @@ marketSummary.get('/summary', jwtCheck, (async (request: Request, response: Resp
 
     const marketSummaryData = res.data as MarketSummary[];
 
-    console.log('marketSummaryData', marketSummaryData);
-
-    console.log('res', res);
     response.status(200).json(marketSummaryData).end();
   } catch (error) {
     next(error);
