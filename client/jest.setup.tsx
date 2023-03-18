@@ -9,4 +9,6 @@ jest.mock('@auth0/auth0-react', () => ({
 	})),
 }));
 
+jest.spyOn(console, 'log').mockImplementation(() => {});
+
 import '@testing-library/jest-dom/extend-expect';
