@@ -6,11 +6,6 @@ import HttpException from '../exceptions/HttpException';
 
 jest.mock('../middleware/auth-middleware', () => jest.fn());
 
-type HttpExceptionError = {
-  status: number;
-  message: string;
-};
-
 describe('Protected API', () => {
   it('should return 200 OK', async () => {
     (jwtCheck as jest.Mock).mockImplementation(
@@ -24,13 +19,15 @@ describe('Protected API', () => {
     expect(res.text).toBe('OK');
   });
   it('should return 401 Unauthorised', async () => {
-    (jwtCheck as jest.Mock).mockImplementation(() => {
-      throw new HttpException(401, 'Unauthorized');
+    const httpException = {
+      message: 'Unauthorized', 
+      status: 401,
+    } as HttpException;
+    (jwtCheck as jest.Mock).mockImplementation(() => { 
+      throw httpException;
     });
     const res = await request(app).get('/protected');
 
-    const error = JSON.parse(res.text) as HttpExceptionError;
-    expect(res.status).toBe(401);
-    expect(error.message).toBe('Unauthorized');
+    expect(res.body).toEqual(httpException);
   });
 });

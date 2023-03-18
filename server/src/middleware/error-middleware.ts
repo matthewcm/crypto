@@ -5,18 +5,23 @@ const errorMiddleware = (
   error: HttpException,
   request: Request,
   response: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ) => {
-  try {
-    const status = error.status || 500;
-    const message = error.message || 'Something went wrong';
-    response.status(status).send({
-      status,
-      message,
-    });
-  } catch (err) {
-    next(err);
-  }
+  // Axios bug: does not return error.status
+  const errorObject = JSON.parse(
+    JSON.stringify(error),
+  ) as HttpException;
+
+  const { 
+    status = 500,
+    message = 'Something went wrong',
+  } = errorObject;
+
+  response.status(status).send({
+    status,
+    message,
+  });
+
 };
 
 export default errorMiddleware;
