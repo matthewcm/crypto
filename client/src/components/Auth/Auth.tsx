@@ -5,21 +5,21 @@ import LogoutButton from '../Auth/LogoutButton';
 import { useEffect } from 'react';
 
 const Auth = () => {
-	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-	useEffect(() => {
-		const getToken = async () => {
-			const accessToken = await getAccessTokenSilently();
-			console.log('accessToken', accessToken);
-		};
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  useEffect(() => {
+    const getToken = async () => {
+      const accessToken = await getAccessTokenSilently();
+      console.log('accessToken', accessToken);
+    };
 
-		void getToken();
-	}, [getAccessTokenSilently]);
-	return (
-		<div className="flex m-auto gap-3">
-			{isAuthenticated && <Profile />}
-			{isAuthenticated ? <LogoutButton /> : <LoginButton />}
-		</div>
-	);
+    void getToken();
+  }, [getAccessTokenSilently]);
+  return (
+    <div className="flex m-auto gap-3">
+      {isAuthenticated && <Profile />}
+      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+    </div>
+  );
 };
 
 export default Auth;

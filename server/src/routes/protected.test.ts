@@ -6,27 +6,31 @@ import HttpException from '../exceptions/HttpException';
 
 jest.mock('../middleware/auth-middleware', () => jest.fn());
 
+type HttpExceptionError = {
+  status: number;
+  message: string;
+};
+
 describe('Protected API', () => {
-	it('should return 200 OK', async () => {
-		(jwtCheck as jest.Mock).mockImplementation(
-			(req: Request, response: Response, next: NextFunction) => {
-				next();
-			}
-		);
-		const res = await request(app).get('/protected');
+  it('should return 200 OK', async () => {
+    (jwtCheck as jest.Mock).mockImplementation(
+      (_req: Request, _res: Response, next: NextFunction) => {
+        next();
+      },
+    );
+    const res = await request(app).get('/protected');
 
-		expect(res.status).toBe(200);
-		expect(res.text).toBe('OK');
-	});
-	it('should return 401 Unauthorised', async () => {
-		(jwtCheck as jest.Mock).mockImplementation(
-			(req: Request, response: Response, next: NextFunction) => {
-				throw new HttpException(401, 'Unauthorized');
-			}
-		);
-		const res = await request(app).get('/protected');
+    expect(res.status).toBe(200);
+    expect(res.text).toBe('OK');
+  });
+  it('should return 401 Unauthorised', async () => {
+    (jwtCheck as jest.Mock).mockImplementation(() => {
+      throw new HttpException(401, 'Unauthorized');
+    });
+    const res = await request(app).get('/protected');
 
-		expect(res.status).toBe(401);
-		expect(JSON.parse(res.text).message).toBe('Unauthorized');
-	});
+    const error = JSON.parse(res.text) as HttpExceptionError;
+    expect(res.status).toBe(401);
+    expect(error.message).toBe('Unauthorized');
+  });
 });

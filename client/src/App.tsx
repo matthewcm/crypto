@@ -5,20 +5,19 @@ import AuthProvider from './components/Auth/AuthProvider';
 import './App.css';
 
 function App() {
-	useEffect(() => {
-		themeChange(false);
-	}, []);
+  useEffect(() => {
+    themeChange(false);
+  }, []);
 
-
-	return (
-		<AuthProvider>
-			<Layout>
-				<div className="App container min-h-screen" role="main">
+  return (
+    <AuthProvider>
+      <Layout>
+        <div className="App container min-h-screen" role="main">
 					Hello
-				</div>
-			</Layout>
-		</AuthProvider>
-	);
+        </div>
+      </Layout>
+    </AuthProvider>
+  );
 }
 
 export default App;
