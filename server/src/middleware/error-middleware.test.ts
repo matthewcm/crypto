@@ -1,9 +1,9 @@
+
+import { NextFunction } from 'express';
+//eslint-disable-next-line
+import { createRequest, createResponse } from 'node-mocks-http';
 import errorMiddleware from './error-middleware';
 import HttpException from '../exceptions/HttpException';
-import { NextFunction, Response } from 'express';
-import {
-  createRequest, createResponse
-} from 'node-mocks-http';
 
 describe('Error Middleware', () => {
   it('should handle an error', () => {

@@ -6,11 +6,6 @@ import HttpException from '../exceptions/HttpException';
 
 jest.mock('../middleware/auth-middleware', () => jest.fn());
 
-type HttpExceptionError = {
-  status: number;
-  message: string;
-};
-
 describe('Protected API', () => {
   it('should return 200 OK', async () => {
     (jwtCheck as jest.Mock).mockImplementation(
