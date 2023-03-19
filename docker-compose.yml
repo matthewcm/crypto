@@ -5,9 +5,9 @@ services:
     build: ./server
     container_name: api_backend
     ports:
-      - 3000:3000
+      - '5000:5000'
     volumes:
-      - ./server:/app
+      - ./:/app
       - /app/node_modules
     stdin_open: true
     tty: true
@@ -17,7 +17,7 @@ services:
       dockerfile: client/Dockerfile
     container_name: client_frontend
     ports:
-      - 8000:8000
+      - '8000:8000'
     volumes:
       - ./:/app
       - /app/node_modules
