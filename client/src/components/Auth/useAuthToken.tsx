@@ -9,7 +9,6 @@ export const useAuthToken = () => {
   useEffect(() => {
     const getToken = async () => {
       const accessToken = await getAccessTokenSilently();
-      console.log('accessToken', accessToken);
       setAuthToken(accessToken);
     };
 

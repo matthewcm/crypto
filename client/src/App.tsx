@@ -3,6 +3,7 @@ import { themeChange } from 'theme-change';
 import Layout from './components/Layout/Layout';
 import AuthProvider from './components/Auth/AuthProvider';
 import './App.css';
+import MarketSummary from './components/MarketSummary/MarketSummary';
 
 function App() {
   useEffect(() => {
@@ -13,7 +14,7 @@ function App() {
     <AuthProvider>
       <Layout>
         <div className="App container min-h-screen" role="main">
-					Hello
+          <MarketSummary/>
         </div>
       </Layout>
     </AuthProvider>

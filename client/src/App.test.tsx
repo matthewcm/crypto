@@ -7,6 +7,7 @@ test('renders app header title', () => {
   expect(headerElement).toBeInTheDocument();
   expect(headerElement).toHaveTextContent(/crypto/i);
 });
+
 test('renders app footer title', () => {
   render(<App />);
   const footerElement = screen.getByRole('contentinfo');
