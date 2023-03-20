@@ -12,7 +12,7 @@ const Profile = () => {
   return (
     <div
       data-testid="profile"
-      className="flex flex-row m-auto text-center items-center justify-center"
+      className="md:flex flex-row m-auto text-center items-center justify-center hidden"
     >
       <img className="max-h-10 mr-2" src={picture} alt={name} />
       <span className="text-center">{name}</span>

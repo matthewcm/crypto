@@ -1,22 +1,29 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
-test('renders app header title', () => {
+test('renders app header title', async () => {
   render(<App />);
   const headerElement = screen.getByRole('banner');
-  expect(headerElement).toBeInTheDocument();
-  expect(headerElement).toHaveTextContent(/crypto/i);
+  await  waitFor(() => {
+
+    expect(headerElement).toBeInTheDocument();
+    expect(headerElement).toHaveTextContent(/crypto/i);
+  });
 });
 
-test('renders app footer title', () => {
+test('renders app footer title', async () => {
   render(<App />);
   const footerElement = screen.getByRole('contentinfo');
-  expect(footerElement).toBeInTheDocument();
-  expect(footerElement).toHaveTextContent(/copyright/i);
+  await  waitFor(() => {
+    expect(footerElement).toBeInTheDocument();
+    expect(footerElement).toHaveTextContent(/copyright/i);
+  });
 });
 
-test('renders app main', () => {
+test('renders app main', async () => {
   render(<App />);
-  const footerElement = screen.getByRole('main');
-  expect(footerElement).toBeInTheDocument();
+  await  waitFor(() => {
+    const footerElement = screen.getByRole('main');
+    expect(footerElement).toBeInTheDocument();
+  });
 });
