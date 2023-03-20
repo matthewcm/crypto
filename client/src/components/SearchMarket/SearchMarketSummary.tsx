@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { MarketSummary } from '../../types/MarketSummary';
 import MarketSymbol from '../MarketSymbol/MarketSymbol';
 import { useSearchMarketLogic } from './useSearchMarketLogic';
 import { RootState } from '../../app/store';
