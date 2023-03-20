@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
 import { themeChange } from 'theme-change';
 import Layout from './components/Layout/Layout';
 import AuthProvider from './components/Auth/AuthProvider';
-import './App.css';
 import MarketSummary from './components/MarketSummary/MarketSummary';
+
+import { setupStore } from './app/store';
+import './App.css';
 
 function App() {
   useEffect(() => {
@@ -11,13 +14,15 @@ function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <Layout>
-        <div className="App container min-h-screen" role="main">
-          <MarketSummary/>
-        </div>
-      </Layout>
-    </AuthProvider>
+    <Provider store={setupStore()}>
+      <AuthProvider>
+        <Layout>
+          <div className="App container min-h-screen" role="main">
+            <MarketSummary/>
+          </div>
+        </Layout>
+      </AuthProvider>
+    </Provider>
   );
 }
 
