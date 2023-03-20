@@ -15,11 +15,9 @@ describe('usePagination hook', () => {
     updatedAt: '2023-03-18T15:02:56.843Z',
   }];
   it('should handle page size change', async () => {
-
     const { result } = renderHook(() => usePagination(mockedMarketSummary));
 
     const {
-      activePageSize,
       handlePageSize,
     } = result.current; 
     
@@ -27,7 +25,7 @@ describe('usePagination hook', () => {
     await waitFor(() => {
       handlePageSize(10);
 
-      expect(activePageSize).toEqual(10);
+      expect(result.current.activePageSize).toEqual(10);
     });
   
   });
@@ -35,14 +33,13 @@ describe('usePagination hook', () => {
     const { result } = renderHook(() => usePagination(mockedMarketSummary));
 
     const {
-      activePage,
       handlePagination,
     } = result.current; 
     
     await waitFor(() => {
       handlePagination(10);
 
-      expect(activePage).toEqual(10);
+      expect(result.current.activePage).toEqual(10);
     });
   });
 });
