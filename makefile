@@ -1,4 +1,4 @@
-.PHONY: kill build down up
+.PHONY: kill build down up lint test build-all run-server run-client
 
 include .env
 export $(shell sed 's/=.*//' .env)
