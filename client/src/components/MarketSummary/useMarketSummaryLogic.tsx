@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { type MarketSummary } from '../../types/MarketSummary';
 import { useAuthToken } from '../Auth/useAuthToken';
