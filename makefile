@@ -1,7 +1,5 @@
 .PHONY: kill build down up
 
-export DOCKER_PROJECT = ${PROJECT_NAME}
-
 kill:
 	docker compose kill
 
@@ -13,3 +11,12 @@ up:
 
 down:
 	docker compose down
+
+lint:
+	docker compose -f docker-compose.yml run api npm run lint-all ; docker-compose rm -fsv
+
+test:
+	docker compose -f docker-compose.yml run api npm run test -- --coverage ; docker-compose rm -fsv
+
+build-all:
+	docker compose -f docker-compose.yml run api npm run build-all; docker-compose rm -fsv
