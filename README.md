@@ -67,9 +67,6 @@ make lint
 4. Quality unit tests using react testing library
 5. Docker build files
 6. Back-end Health check and version info/pages
-7. Keyboard navigation
-  a. Shortcuts
-  b. vim like navigation
 8. Light/Dark themes
 
 ## Non-Functional Requirements
@@ -117,6 +114,8 @@ make lint
 - Endpoint for summary of specific currency.
   - Express server `GET`
 - Endpoint for health check
+  - Express server `GET`
+- Endpoint for status check
   - Express server `GET`
 
 - Authorised endpoints with auth0 jwt tokens.
