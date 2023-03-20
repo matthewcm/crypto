@@ -8,8 +8,8 @@ RUN npm install
 
 COPY . .
 
-ENV PORT=5000
+ARG SERVER_PORT
 
-EXPOSE 5000
+ENV SERVER_PORT 3000
 
 CMD ["npm", "run", "start:server", "--host", "--workspace=server"]
