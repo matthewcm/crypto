@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { useSearchMarketLogic } from './useSearchMarketLogic';
 import { MarketSummary as MarketSummaryType } from '../../types/MarketSummary';
 import { WithProviders } from '../../utils/testUtils';
-import SearchMarket from './SearchMarketModal';
+import SearchMarketModal from './SearchMarketModal';
 
 jest.mock('./useSearchMarketLogic');
 
@@ -35,7 +35,7 @@ describe('Search Market Modal', () => {
 
     render(
       <WithProviders>
-        <SearchMarket />
+        <SearchMarketModal />
       </WithProviders>,
     );
 
@@ -58,7 +58,7 @@ describe('Search Market Modal', () => {
 
     render(
       <WithProviders>
-        <SearchMarket />
+        <SearchMarketModal />
       </WithProviders>,
     );
 
@@ -78,7 +78,7 @@ describe('Search Market Modal', () => {
 
     render(
       <WithProviders>
-        <SearchMarket />
+        <SearchMarketModal />
       </WithProviders>,
     );
 

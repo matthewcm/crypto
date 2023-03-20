@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import SearchMarketSummary from './SearchMarketSummary';
 
-const SearchMarket = () => {
+const SearchMarketModal = () => {
   const { isAuthenticated } = useAuth0();
 
   return (
@@ -26,4 +26,4 @@ const SearchMarket = () => {
     </>
   );
 };
-export default SearchMarket;
+export default SearchMarketModal;
