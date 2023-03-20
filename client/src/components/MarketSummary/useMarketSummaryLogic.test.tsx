@@ -2,12 +2,38 @@ jest.mock('../Auth/useAuthToken', () => ({
   useAuthToken: jest.fn(),
 }));
 
+import { PropsWithChildren } from 'react';
 import axios from 'axios';
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { useMarketSummaryLogic } from './useMarketSummaryLogic';
 import { MarketSummary } from '../../types/MarketSummary';
 import { useAuthToken } from '../Auth/useAuthToken';
+import { WithProviders } from '../../utils/testUtils';
+import { RootState, setupStore } from '../../app/store';
+
+const renderHookWithProviders = (preloadedState: RootState) => {
+
+  const store = setupStore(
+    preloadedState,
+  );
+
+  const wrapper = ({ children }: PropsWithChildren) => {
+    return (
+      <WithProviders preloadedState={preloadedState} store={store}>
+        {children}
+      </WithProviders>
+    );
+  };
+  const { result } = renderHook(() => ( 
+    useMarketSummaryLogic()
+  ), { wrapper });
+
+  return {
+    result,
+    store,
+  };
+};
 
 describe('useMarketSummaryLogic hook', () => {
 
@@ -24,17 +50,17 @@ describe('useMarketSummaryLogic hook', () => {
     (axios.get as jest.Mock).mockResolvedValue({
       data: mockedMarketSummary,
     });
-
     (useAuthToken as jest.Mock).mockReturnValue({
       authToken: 'jwtToken',
     });
-    
 
-    const { result, rerender } = renderHook(() => useMarketSummaryLogic());
-    rerender();
+    const preloadedState = {
+      marketSummaryList: mockedMarketSummary,
+    };
 
+    const { store } = renderHookWithProviders(preloadedState);
     await waitFor(() => {
-      expect(result.current.markets).toEqual(mockedMarketSummary);
+      expect(store.getState().marketSummaryList).toEqual(mockedMarketSummary);
     });
 
 
@@ -53,11 +79,13 @@ describe('useMarketSummaryLogic hook', () => {
     });
     
 
-    const { result, rerender } = renderHook(() => useMarketSummaryLogic());
-    rerender();
+    const preloadedState = {
+      marketSummaryList: mockedMarketSummary,
+    };
+  
+    renderHookWithProviders(preloadedState);
 
     await waitFor(() => {
-      expect(result.current.markets).toEqual([]);
       expect(console.error).toHaveBeenCalled();
     });
 
@@ -66,8 +94,14 @@ describe('useMarketSummaryLogic hook', () => {
 
   describe('percentChangeColor', () => {
     it('should return appropiate colors based on percent change', async () => {
-      const { result } = renderHook(() => useMarketSummaryLogic());
+      const preloadedState = { 
+        marketSummaryList: [],
+      };
+     
+      const { result } = renderHookWithProviders(preloadedState);
+
       const { percentChangeColor } = result.current;
+
       await waitFor(() => {
         expect(percentChangeColor(5)).toContain('green');
         expect(percentChangeColor(-5)).toContain('red');

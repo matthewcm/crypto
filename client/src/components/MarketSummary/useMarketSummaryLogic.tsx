@@ -1,12 +1,14 @@
+import { useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
 import { type MarketSummary } from '../../types/MarketSummary';
 import { useAuthToken } from '../Auth/useAuthToken';
+import { setMarketSummaryList } from '../../features/market/marketSlice';
 
 export const useMarketSummaryLogic = () => {
-  const [markets, setMarkets] = useState<MarketSummary[]>([]);
-
   const { authToken } = useAuthToken();
+
+  const dispatch = useDispatch();
 
   const fetchDetails = useCallback(async () => {
     try {
@@ -18,11 +20,13 @@ export const useMarketSummaryLogic = () => {
           Authorization: `Bearer ${authToken}`,
         },
       });
-      setMarkets(response.data as MarketSummary[]);
+      dispatch(setMarketSummaryList(
+        response.data as MarketSummary[],
+      ));
     } catch (error) {
       console.error(error);
     }
-  }, [authToken]); 
+  }, [authToken, dispatch]); 
 
   useEffect(() => {
     void fetchDetails() ;
@@ -38,7 +42,6 @@ export const useMarketSummaryLogic = () => {
   };
 
   return {
-    markets,
     percentChangeColor,
   };
 };

@@ -1,17 +1,20 @@
+import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { type MarketSummary as MarketSummaryType } from '../../types/MarketSummary';
 import { useMarketSummaryLogic } from './useMarketSummaryLogic';
+import { RootState } from '../../app/store';
 
 const MarketSummary = () => {
 
   const {
-    markets,
     percentChangeColor,
   } = useMarketSummaryLogic();
 
   const {
     isAuthenticated,
   } = useAuth0();
+
+  const markets = useSelector((state: RootState) => state.marketSummaryList);
 
   return (
     <div>
