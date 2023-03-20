@@ -57,7 +57,7 @@ describe('MarketSummary', () => {
 
     await waitFor(() => {
 
-      const marketName = screen.getByText('BTC-ETH');
+      const marketName = screen.getByText('BTC');
       const percentChange = screen.getByText('1.5%');
 
       expect(marketName).toBeInTheDocument();
@@ -65,10 +65,43 @@ describe('MarketSummary', () => {
       expect(percentChange.className).toContain('text-green-600');
     });
   });
+  
+  it('should render the market summary table with the provided data and default percent change to 0', async () => {
+    (useAuth0 as jest.Mock).mockReturnValue({
+      isAuthenticated: true,
+    });
+    const sampleMarkets: MarketSummaryType[] = [
+      {
+        symbol: 'BTC-ETH',
+        high: '0.032',
+        low: '0.031',
+        volume: '1000',
+        quoteVolume: '2000',
+        percentChange: undefined,
+        updatedAt: '2023-03-15T10:00:00Z',
+      },
+    ];
+
+    render(
+      <WithProviders preloadedState={{
+        marketSummaryList: sampleMarkets,
+      }}>
+        <MarketSummary />
+      </WithProviders>,
+    );
+
+    await waitFor(() => {
+
+      const marketName = screen.getByText('BTC');
+      const percentChange = screen.getByText('0%');
+
+      expect(marketName).toBeInTheDocument();
+      expect(percentChange).toBeInTheDocument();
+      expect(percentChange.className).toContain('text-gray-500');
+    });
+  });
 
   it('should render an empty table when there are no markets', async () => {
- 
-
     render(
       <WithProviders>
         <MarketSummary />
@@ -77,7 +110,7 @@ describe('MarketSummary', () => {
 
     await waitFor(() => {
 
-      const marketName = screen.queryByText('BTC-ETH');
+      const marketName = screen.queryByText('BTC');
       const percentChange = screen.queryByText('1.5%');
 
       expect(marketName).not.toBeInTheDocument();
