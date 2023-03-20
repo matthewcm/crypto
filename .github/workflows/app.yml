@@ -24,10 +24,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run lint-all
-    - run: npm run build-all
+    - run: make lint 
+    - run: make build-all
     - name: Run the tests and generate coverage report
-      run: npm run test -- --coverage
+      run: make test
+    - run: make down
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:

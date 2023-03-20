@@ -16,7 +16,6 @@ services:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - ./:/app
-      - /app/node_modules
     stdin_open: true
     tty: true
   client:
@@ -32,6 +31,5 @@ services:
       - ${CLIENT_PORT}:${CLIENT_PORT}
     volumes:
       - ./:/app
-      - /app/node_modules
     stdin_open: true
     tty: true
