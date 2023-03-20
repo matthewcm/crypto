@@ -16,7 +16,7 @@ const PaginationRow = ({
   handlePagination,
   handlePageSize,
 }: PaginationRowProps) => (
-  <div className="flex justify-around mb-5">
+  <div className="flex justify-around my-5">
     <div className="btn-group" aria-label='Table Size'>
       {sizes.map((size) => (
 
