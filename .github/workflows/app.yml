@@ -28,6 +28,7 @@ jobs:
     - run: make build-all
     - name: Run the tests and generate coverage report
       run: make test
+    - run: make down
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:

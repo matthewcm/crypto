@@ -13,10 +13,10 @@ down:
 	docker compose down
 
 lint:
-	docker compose -f docker-compose.yml run api npm run lint-all ; docker-compose rm -fsv
+	docker compose -f docker-compose.yml run api npm run lint-all
 
 test:
-	docker compose -f docker-compose.yml run api npm run test -- --coverage ; docker-compose rm -fsv
+	docker compose -f docker-compose.yml run api npm run test -- --coverage
 
 build-all:
-	docker compose -f docker-compose.yml run api npm run build-all; docker-compose rm -fsv
+	docker compose -f docker-compose.yml run api npm run build-all
