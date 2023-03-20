@@ -9,4 +9,5 @@ module.exports = {
 		themes: ['cupcake', 'dracula'],
 		darkTheme: 'dracula',
 	},
+	important: true
 };

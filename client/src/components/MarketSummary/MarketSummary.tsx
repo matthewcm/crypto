@@ -3,16 +3,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { type MarketSummary as MarketSummaryType } from '../../types/MarketSummary';
 import { useMarketSummaryLogic } from './useMarketSummaryLogic';
 import { RootState } from '../../app/store';
+import { percentChangeColor } from '../../utils/percentColor';
 
 const MarketSummary = () => {
-
-  const {
-    percentChangeColor,
-  } = useMarketSummaryLogic();
-
   const {
     isAuthenticated,
   } = useAuth0();
+
+  useMarketSummaryLogic();
 
   const markets = useSelector((state: RootState) => state.marketSummaryList);
 
@@ -23,8 +21,6 @@ const MarketSummary = () => {
       { !isAuthenticated ? (
         <p> Please log in to view market summary data</p>)
         : (
-
-           
           <div className="overflow-x-auto">
             <table className="table w-full">
               <thead>
@@ -48,9 +44,6 @@ const MarketSummary = () => {
         
         )}
     </div>
-
-
-        
   );
 };
 

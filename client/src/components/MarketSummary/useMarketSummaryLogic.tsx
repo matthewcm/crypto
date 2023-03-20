@@ -1,47 +1,19 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { type MarketSummary } from '../../types/MarketSummary';
-import { useAuthToken } from '../Auth/useAuthToken';
 import { setMarketSummaryList } from '../../features/market/marketSlice';
+import { useMarketSummaryList } from '../../hooks/useMarketSummaryList';
 
 export const useMarketSummaryLogic = () => {
-  const { authToken } = useAuthToken();
-
   const dispatch = useDispatch();
-
-  const fetchDetails = useCallback(async () => {
-    try {
-
-      if (!authToken) return null;
-
-      const response = await axios.get('http://localhost:5000/summary', {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
-      dispatch(setMarketSummaryList(
-        response.data as MarketSummary[],
-      ));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [authToken, dispatch]); 
+  const marketSummaryList = useMarketSummaryList();
 
   useEffect(() => {
-    void fetchDetails() ;
-  }, [fetchDetails]);
+    if (marketSummaryList) {
+      dispatch(setMarketSummaryList(
+        marketSummaryList,
+      ));
 
-  const percentChangeColor = (change: number) => {
-    if (change > 0) {
-      return 'text-green-600';
-    } else if (change < 0) {
-      return 'text-red-800';
     }
-    return 'text-gray-500';
-  };
+  }, [marketSummaryList, dispatch]);
 
-  return {
-    percentChangeColor,
-  };
 };

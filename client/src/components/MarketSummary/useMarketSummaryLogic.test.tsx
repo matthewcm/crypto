@@ -1,4 +1,4 @@
-jest.mock('../Auth/useAuthToken', () => ({
+jest.mock('../../hooks/useAuthToken', () => ({
   useAuthToken: jest.fn(),
 }));
 
@@ -8,7 +8,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 
 import { useMarketSummaryLogic } from './useMarketSummaryLogic';
 import { MarketSummary } from '../../types/MarketSummary';
-import { useAuthToken } from '../Auth/useAuthToken';
+import { useAuthToken } from '../../hooks/useAuthToken';
 import { WithProviders } from '../../utils/testUtils';
 import { RootState, setupStore } from '../../app/store';
 
@@ -92,22 +92,4 @@ describe('useMarketSummaryLogic hook', () => {
 
   });
 
-  describe('percentChangeColor', () => {
-    it('should return appropiate colors based on percent change', async () => {
-      const preloadedState = { 
-        marketSummaryList: [],
-      };
-     
-      const { result } = renderHookWithProviders(preloadedState);
-
-      const { percentChangeColor } = result.current;
-
-      await waitFor(() => {
-        expect(percentChangeColor(5)).toContain('green');
-        expect(percentChangeColor(-5)).toContain('red');
-        expect(percentChangeColor(0)).toContain('gray');
-      });
-
-    });
-  });
 });

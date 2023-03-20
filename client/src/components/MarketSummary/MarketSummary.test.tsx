@@ -1,13 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import MarketSummary from './MarketSummary';
-import { useMarketSummaryLogic } from './useMarketSummaryLogic';
 import { MarketSummary as MarketSummaryType } from '../../types/MarketSummary';
 import { WithProviders } from '../../utils/testUtils';
 
 jest.mock('./useMarketSummaryLogic');
-
-const mockedUseMarketSummaryLogic = useMarketSummaryLogic as jest.MockedFunction<typeof useMarketSummaryLogic>;
 
 describe('MarketSummary', () => {
 
@@ -15,14 +12,10 @@ describe('MarketSummary', () => {
     jest.clearAllMocks();
   });
 
-  it('should ask user to log in if not authenticated', () => {
+  it('should ask user to log in if not authenticated', async () => {
 
     (useAuth0 as jest.Mock).mockReturnValue({
       isAuthenticated: false,
-    });
-
-    mockedUseMarketSummaryLogic.mockReturnValue({
-      percentChangeColor: (change: number) => (change > 0 ? 'text-green-600' : 'text-red-800'),
     });
 
     render(
@@ -31,11 +24,14 @@ describe('MarketSummary', () => {
       </WithProviders>,
     );
 
-    expect(screen.getByText(/Please log in/i)).toBeInTheDocument();
+    await waitFor(() => {
+
+      expect(screen.getByText(/Please log in/i)).toBeInTheDocument();
+    });
  
   });
 
-  it('should render the market summary table with the provided data', () => {
+  it('should render the market summary table with the provided data', async () => {
     (useAuth0 as jest.Mock).mockReturnValue({
       isAuthenticated: true,
     });
@@ -51,11 +47,6 @@ describe('MarketSummary', () => {
       },
     ];
 
-    mockedUseMarketSummaryLogic.mockReturnValue({
-      percentChangeColor: (change: number) => (change > 0 ? 'text-green-600' : 'text-red-800'),
-    });
-
- 
     render(
       <WithProviders preloadedState={{
         marketSummaryList: sampleMarkets,
@@ -64,18 +55,19 @@ describe('MarketSummary', () => {
       </WithProviders>,
     );
 
-    const marketName = screen.getByText('BTC-ETH');
-    const percentChange = screen.getByText('1.5%');
+    await waitFor(() => {
 
-    expect(marketName).toBeInTheDocument();
-    expect(percentChange).toBeInTheDocument();
-    expect(percentChange.className).toContain('text-green-600');
+      const marketName = screen.getByText('BTC-ETH');
+      const percentChange = screen.getByText('1.5%');
+
+      expect(marketName).toBeInTheDocument();
+      expect(percentChange).toBeInTheDocument();
+      expect(percentChange.className).toContain('text-green-600');
+    });
   });
 
-  it('should render an empty table when there are no markets', () => {
-    mockedUseMarketSummaryLogic.mockReturnValue({
-      percentChangeColor: (change: number) => (change > 0 ? 'text-green-600' : 'text-red-800'),
-    });
+  it('should render an empty table when there are no markets', async () => {
+ 
 
     render(
       <WithProviders>
@@ -83,11 +75,14 @@ describe('MarketSummary', () => {
       </WithProviders>,
     );
 
-    const marketName = screen.queryByText('BTC-ETH');
-    const percentChange = screen.queryByText('1.5%');
+    await waitFor(() => {
 
-    expect(marketName).not.toBeInTheDocument();
-    expect(percentChange).not.toBeInTheDocument();
+      const marketName = screen.queryByText('BTC-ETH');
+      const percentChange = screen.queryByText('1.5%');
+
+      expect(marketName).not.toBeInTheDocument();
+      expect(percentChange).not.toBeInTheDocument();
+    });
   });
 });
 
