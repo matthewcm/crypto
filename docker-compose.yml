@@ -1,11 +1,19 @@
 version: '3.8'
 
+
+
 services:
   api:
-    build: ./server
+    build: 
+      context: .
+      dockerfile: server/Dockerfile
+      args:
+        - SERVER_PORT=$SERVER_PORT
     container_name: api_backend
+    env_file:
+      - .env
     ports:
-      - '5000:5000'
+      - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - ./:/app
       - /app/node_modules
@@ -15,9 +23,13 @@ services:
     build: 
       context: .
       dockerfile: client/Dockerfile
+      args:
+        - ${CLIENT_PORT}=${CLIENT_PORT}
     container_name: client_frontend
+    env_file:
+      - .env
     ports:
-      - '8000:8000'
+      - ${CLIENT_PORT}:${CLIENT_PORT}
     volumes:
       - ./:/app
       - /app/node_modules

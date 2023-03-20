@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useAuthToken } from './useAuthToken';
 import { MarketSummary } from '../types/MarketSummary';
-import { authRequest } from '../services/marketSummary';
+import { authRequest } from '../services/authRequest';
 
 export const useMarketSummaryForCurrency = (currency: string) => {
   const { authToken } = useAuthToken();

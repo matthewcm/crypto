@@ -8,6 +8,9 @@ RUN npm i
 
 COPY . .
 
-EXPOSE 8000
+ARG CLIENT_PORT
 
-CMD ["npm", "run", "dev", "--host", "--workspace=client"]
+ENV CLIENT_PORT=${CLIENT_PORT}
+
+
+CMD npm run dev --workspace=client -- --host --port ${CLIENT_PORT}
