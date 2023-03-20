@@ -46,10 +46,10 @@ const Table = ({ data }: TableProps ) => {
           {page.map((market) => (
             <tr key={market.symbol}>
               <td><MarketSymbol symbol={market.symbol}/></td>
-              <td className="hidden sm:table-cell">{((Math.round((market.low) * 100000000) / 100000000).toFixed(8))}</td>
-              <td className="hidden sm:table-cell">{((Math.round((market.high) * 100000000) / 100000000).toFixed(8))}</td>
-              <td className="hidden lg:table-cell">${((Math.round((market.volume) * 100) / 100).toFixed(2))}</td>
-              <td className="hidden lg:table-cell">${((Math.round((market.quoteVolume) * 100) / 100).toFixed(2))}</td>
+              <td className="hidden sm:table-cell">{(Math.round(Number(market.low) * 100000000) / 100000000).toFixed(8)}</td>
+              <td className="hidden sm:table-cell">{(Math.round(Number(market.high) * 100000000) / 100000000).toFixed(8)}</td>
+              <td className="hidden lg:table-cell">${(Math.round(Number(market.volume) * 100) / 100).toFixed(2)}</td>
+              <td className="hidden lg:table-cell">${(Math.round(Number(market.quoteVolume) * 100) / 100).toFixed(2)}</td>
               <td className={`${percentChangeColor(Number(market.percentChange))}`}>{Number(market.percentChange || 0)}% </td>
             </tr>
           ))}
