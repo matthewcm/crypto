@@ -3,8 +3,6 @@
 [![codecov](https://codecov.io/gh/matthewcm/crypto/branch/main/graph/badge.svg?token=3XOEVUP6N1)](https://codecov.io/gh/matthewcm/crypto)
 [![NodeJS CI](https://github.com/matthewcm/crypto/actions/workflows/app.yml/badge.svg)](https://github.com/matthewcm/crypto/actions/workflows/app.yml)
 
-
-
 # Introduction
 
 A react app that fetches crypto currency market updates from https://bittrex.github.io/api/v3
@@ -16,18 +14,40 @@ Check the official Docker documentation for information how to install Docker on
 
 # How to use
 
+Install node dependencies
+
+```bash
+npm ci
+```
+
 with Docker installed on your machine, run the following `make` commands
 
-## To build and run the application
+## To build application
 
 ```bash
 make build
+```
+
+## To run the application
+
+```bash
+make up
 ```
 
 ## To stop and remove application docker containers
 
 ```bash
 make down
+```
+
+## To run tests on Docker container
+```bash
+make test
+```
+
+## To run lint on Docker container
+```bash
+make lint
 ```
 
 
