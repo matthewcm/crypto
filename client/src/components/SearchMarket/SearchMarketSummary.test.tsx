@@ -44,6 +44,8 @@ describe('SearchMarketSummary', () => {
     const [currency, baseCurrency ] = sampleMarket.symbol.split('-');
     expect(screen.getByText(currency)).toBeInTheDocument();
     expect(screen.getByText(baseCurrency)).toBeInTheDocument();
+    expect(screen.getByText(`$${sampleMarket.quoteVolume}`)).toBeInTheDocument();
+    expect(screen.getByText(`$${sampleMarket.volume}`)).toBeInTheDocument();
   }); 
   it('should render the empty Search summary modal', () => {
 

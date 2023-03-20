@@ -39,9 +39,8 @@ const SearchMarketSummary = () => {
         </div>
         <Stat label="Low" value={market.low || '-' } />
         <Stat label="High" value={market.high || '-'} />
-        <Stat label="Volume" value={`$${market.volume}` || '-'} />
-        <Stat label="Quote Volume" value={`$${market.quoteVolume}` || '-'} />
-  
+        <Stat label="Base Volume" value={ market.volume ? `$${market.volume}` : '-'} />
+        <Stat label="Quote Volume" value={ market.quoteVolume ? `$${market.quoteVolume}` : '-'} />
       </div>
     </>
   );
