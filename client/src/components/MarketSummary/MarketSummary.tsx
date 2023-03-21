@@ -20,8 +20,11 @@ const MarketSummary = () => {
       { !isAuthenticated ? (
         <p> Please log in to view market summary data</p>)
         : (
-          <Table data={markets}/>
-        )}
+          <>
+            {(markets.length > 0) && <Table data={markets}/> }
+          </>
+        )
+      }
     </div>
   );
 };

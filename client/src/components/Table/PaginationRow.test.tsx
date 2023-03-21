@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 
 import PaginationRow, { PaginationRowProps } from './PaginationRow';
 
-describe('usePagination hook', () => {
+describe('Pagination Row', () => {
 
   it('should render pagination row', () => {
 
