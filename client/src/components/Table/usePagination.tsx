@@ -2,24 +2,24 @@ import { useCallback, useEffect, useState } from 'react';
 import { MarketSummary } from '../../types/MarketSummary';
 
 export const usePagination = (data: MarketSummary[]) => {
-
   const pageSizes = [20, 50, 100];
 
+  const [currentData, setCurrentData] = useState(data);
   const [page, setPage] = useState<MarketSummary[]>([]);
   const [activePage, setActivePage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const [activePageSize, setActivePageSize] = useState(pageSizes[0]);
 
   const getNewPageSlice = useCallback((pageNum:number, pageSize: number) => {
-    return data.slice(
+    return currentData.slice(
       (pageNum - 1) * pageSize,
       pageNum * pageSize,
     );
-  }, [data]);
+  }, [currentData]);
 
   const getNewPageCount = useCallback((pageSize: number) => {
-    return Math.ceil(data.length / pageSize);
-  }, [data]);
+    return Math.ceil(currentData.length / pageSize);
+  }, [currentData]);
 
   const handlePagination = useCallback((pageNum: number) => {
     setPage(getNewPageSlice(pageNum, activePageSize));
@@ -38,6 +38,9 @@ export const usePagination = (data: MarketSummary[]) => {
     handlePagination(1);
   }, [handlePagination]);
 
+  useEffect(() => {
+    setCurrentData(data);
+  }, [data]);
 
   return {
     page,

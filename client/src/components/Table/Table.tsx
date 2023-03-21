@@ -1,15 +1,21 @@
-
 import { percentChangeColor } from '../../utils/percentColor';
 import { MarketSummary } from '../../types/MarketSummary';
 import PaginationRow from './PaginationRow';
 import MarketSymbol from '../MarketSymbol/MarketSymbol';
 import { usePagination } from './usePagination';
-
+import SortableHeader from './SortableHeader';
+import { useHeaderSort } from './useHeaderSort';
 interface TableProps {
   data: MarketSummary[]
 }
 const Table = ({ data }: TableProps ) => {
- 
+  const {
+    lastSortField,
+    sortDescending,
+    sortedData,
+    handleSort,
+  } = useHeaderSort(data);
+
   const {
     page,
     activePage,
@@ -18,7 +24,7 @@ const Table = ({ data }: TableProps ) => {
     activePageSize,
     handlePageSize,
     handlePagination,
-  } = usePagination(data);
+  } = usePagination(sortedData);
 
   return (
     <div className="overflow-x-auto">
@@ -33,12 +39,59 @@ const Table = ({ data }: TableProps ) => {
       <table className="table w-full">
         <thead>
           <tr>
-            <th>Market: Base-Quote</th>
-            <th className='hidden sm:table-cell'>Low</th>
-            <th className='hidden sm:table-cell'>High</th>
-            <th className='hidden lg:table-cell'>24h Base Volume</th>
-            <th className='hidden lg:table-cell'>24h Quote Volume</th>
-            <th>24h Change</th>
+            <SortableHeader
+              sortField={'symbol'} 
+              lastSortField={lastSortField}
+              sortDescending={sortDescending}
+              handleSort={handleSort}
+            >
+               Market: Base-Quote 
+            </SortableHeader>
+            <SortableHeader 
+              sortField={'low'}
+              className='hidden sm:table-cell'
+              lastSortField={lastSortField}
+              sortDescending={sortDescending}
+              handleSort={handleSort}
+            >
+              Low
+            </SortableHeader>
+            
+            <SortableHeader 
+              sortField={'high'}
+              className='hidden sm:table-cell'
+              lastSortField={lastSortField}
+              sortDescending={sortDescending}
+              handleSort={handleSort}
+            >
+              High
+            </SortableHeader>
+            <SortableHeader 
+              sortField={'volume'}
+              className='hidden lg:table-cell'
+              lastSortField={lastSortField}
+              sortDescending={sortDescending}
+              handleSort={handleSort}
+            >
+              24h Base Volume
+            </SortableHeader> 
+            <SortableHeader 
+              sortField={'quoteVolume'}
+              className='hidden lg:table-cell'
+              lastSortField={lastSortField}
+              sortDescending={sortDescending}
+              handleSort={handleSort}
+            >
+              24h Quote Volume
+            </SortableHeader>
+            <SortableHeader 
+              sortField={'percentChange'}
+              lastSortField={lastSortField}
+              sortDescending={sortDescending}
+              handleSort={handleSort}
+            >
+              24h Change
+            </SortableHeader>
           </tr>
         </thead>
         <tbody>
