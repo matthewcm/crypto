@@ -1,7 +1,7 @@
-import LoginButton from '../Auth/LoginButton';
-import Profile from '../Auth/Profile';
+import LoginButton from '../LoginButton/LoginButton';
+import Profile from '../Profile/Profile';
 import { useAuth0 } from '@auth0/auth0-react';
-import LogoutButton from '../Auth/LogoutButton';
+import LogoutButton from '../LogoutButton/LogoutButton';
 
 const Auth = () => {
   const { isAuthenticated } = useAuth0();
