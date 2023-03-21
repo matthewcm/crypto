@@ -5,6 +5,7 @@ import {
   type Response,
   type RequestHandler,
 } from 'express';
+import { MARKET_SUMMARY_URL } from '../consts/urls';
 
 export const statusRoute = Router();
 
@@ -30,7 +31,7 @@ const checkBittrexApiStatus = async (): Promise<StatusResponse> => {
   };
 
   try {
-    const response = await axios.get('https://api.bittrex.com/v3/ping');
+    const response = await axios.get(`${MARKET_SUMMARY_URL}/ping`);
 
     if (response.status === 200) {
       return statusOKResponse;
