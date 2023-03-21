@@ -47,7 +47,9 @@ const checkBittrexApiStatus = async (): Promise<StatusResponse> => {
 statusRoute.get('/status', (async (req: Request, res: Response) => {
   const bittrexApiStatus = await checkBittrexApiStatus();
 
+  const version = String(process.env.npm_package_version);
   const statusResponse = {
+    version,
     status: StatusCodes.OKAY,
     checks: [bittrexApiStatus],
   };
