@@ -1,7 +1,7 @@
 {
 	"name": "crypto-api",
 	"private": true,
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
 		"start:server": "nodemon --esm --experimental-specifier-resolution=node src/server.ts",
