@@ -5,8 +5,8 @@ version: '3.8'
 services:
   api:
     build: 
-      context: .
-      dockerfile: server/Dockerfile
+      context: server
+      dockerfile: Dockerfile
       args:
         - SERVER_PORT=$SERVER_PORT
     container_name: api_backend
@@ -15,13 +15,14 @@ services:
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
-      - ./:/app
+      - ./server:/app/server
+      - /app/server/node_modules/
     stdin_open: true
     tty: true
   client:
     build: 
-      context: .
-      dockerfile: client/Dockerfile
+      context: client
+      dockerfile: Dockerfile
       args:
         - ${CLIENT_PORT}=${CLIENT_PORT}
     container_name: client_frontend
@@ -30,6 +31,8 @@ services:
     ports:
       - ${CLIENT_PORT}:${CLIENT_PORT}
     volumes:
-      - ./:/app
+      - ./client:/app/client
+      - /app/client/node_modules/
+
     stdin_open: true
     tty: true

@@ -1,15 +1,14 @@
 FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /app/server
 
 COPY package*.json .
+COPY . .
 
 RUN npm install
-
-COPY . .
 
 ARG SERVER_PORT
 
 ENV SERVER_PORT 3000
 
-CMD ["npm", "run", "start:server", "--host", "--workspace=server"]
+CMD ["npm", "run", "start:server", "--host"]
